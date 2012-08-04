@@ -4,7 +4,7 @@ Random Opener
 ***
 Open a random file in a given directory. 
 
-To install just doble click the *.applescript* file.
+To install just doble click the *.alfredextension* file.
 Then you MUST specify the directory from which the files are gonna be chosen in the *"DIR"* variable 
 
 *DIR="/path/to/directory/"*

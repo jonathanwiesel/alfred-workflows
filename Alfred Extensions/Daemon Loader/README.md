@@ -4,7 +4,7 @@ Daemon Loader
 ***
 Load/Unload specified daemon. 
 
-To install just doble click the *.applescript* file.
+To install just doble click the *.alfredextension* file.
 Then you MUST specify the path to the daemon in the *"daemon"* variable 
 
 *daemon="/path/to/daemon/"*

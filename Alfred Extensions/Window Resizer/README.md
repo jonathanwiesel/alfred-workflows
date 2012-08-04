@@ -13,7 +13,7 @@ Resize application's window with keywords.
 		left-half screen 		-- 		,  
 		right-half screen 		-- 		. 
 
-To install just doble click the *.applescript* file 
+To install just doble click the *.alfredextension* file 
 
 To run just type, for example *"sz f"* in Alfred bar.
 Your frontmost window will be resized to fullscreen.
