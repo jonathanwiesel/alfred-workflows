@@ -18,5 +18,5 @@ each size with the same keywords as arguments or your custom ones
 
 To install just doble click the *.applescript* file 
 
-To run just type, for example *sz f* in Alfred bar.
+To run just type, for example *"sz f"* in Alfred bar.
 Your frontmost window will be resized to fullscreen.

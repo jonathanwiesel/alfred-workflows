@@ -9,6 +9,6 @@ Then you MUST specify the directory from which the files are gonna be chosen in 
 
 *DIR="/path/to/directory/"*
 
-To run just type *random* in Alfred bar. 
+To run just type *"random"* in Alfred bar. 
 A random file within the given directory will be open.
 	

@@ -9,7 +9,7 @@ Then you MUST specify the path to the daemon in the *"daemon"* variable
 
 *daemon="/path/to/daemon/"*
 
-To run just type *daemon load* or *daemon unload* in Alfred bar.
+To run just type *"daemon load"* or *"daemon unload"* in Alfred bar.
 
 This extension may not work for you because it uses the *"sudo"* command without a password
 
