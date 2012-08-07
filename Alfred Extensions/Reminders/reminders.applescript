@@ -1,4 +1,4 @@
-#explode © 2008 ljr (http://applescript.bratis-lover.net)
+--explode © 2008 ljr (http://applescript.bratis-lover.net)
 on explode(delimiter, input)
 		local delimiter, input, ASTID
 		set ASTID to AppleScript's text item delimiters
@@ -19,20 +19,27 @@ on alfred_script(q)
 	set queryDay to item 2 of myList
 	set theHour to item 3 of myList
 	set theYear to year of (current date)
+
 	if queryDay = "today" then
 		set theDay to day of (current date) as string
 		set theMonth to month of (current date)
 		set theDate to theMonth & " " & theDay & " " & theYear
+
 	else if queryDay = "tomorrow" then
-		set theDay to (day of (current date)) + 1
-		set theMonth to month of (current date)
-		if year of (current date) < year of ((current date) + 1 * days) then
+		set theDay to (day of ((current date) + (24 * 60 * 60)))
+		if (day of (current date)) < (day of ((current date) + (24 * 60 * 60)))
+			set theMonth to month of (current date)
+		else
+			set theMonth to (month of ((current date) + (30 * 24 * 60 * 60)))
+		end if
+		if year of (current date) < year of ((current date) + (24 * 60 * 60)) then
 			set theYear to (year of (current date)) + 1
 			set theDate to theMonth & " " & theDay & " " & theYear & " "
 		else
 			set theYear to year of (current date)
 			set theDate to theMonth & " " & theDay & " " & theYear & " "
 		end if
+
 	else
 		set theDate to queryDay
 	end if
