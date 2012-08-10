@@ -5,7 +5,7 @@ ruta=$(ps -A | grep -i "${p}" | grep -v grep | awk '{$1=$2=$3=""; print  $0 }' |
 
 if [[ $number -gt 0 ]]
 then
-	sudo killall "${ruta}"
+	killall "${ruta}"
 	sleep 1 
 	open -a "${ruta}"
 	echo ""${p}" - Process Restarted";
