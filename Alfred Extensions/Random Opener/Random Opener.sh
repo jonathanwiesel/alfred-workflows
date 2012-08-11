@@ -10,7 +10,7 @@ then
   		file_matrix=($(ls "${DIR}"))
   		num_files=${#file_matrix[*]}
   		aux="${DIR}/${file_matrix[$((RANDOM%num_files))]}"
-  		if [[ -d "${bolas}" ]]
+  		if [[ -d "${aux}" ]]
   		then
 			DIR="$aux"
   		else
