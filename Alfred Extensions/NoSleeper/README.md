@@ -15,4 +15,4 @@ When ON, NoSleep menubar icon will display NoSleep is active then you can close 
 When OFF, NoSleep will set AC option OFF then quit. Your Macbook will sleep normally. 
 
 
-[nosleep]: http://hints.macworld.com/article.php?story=20021202054815892 "LINK"
+[nosleep]: http://code.google.com/p/macosx-nosleep-extension/ "LINK"
