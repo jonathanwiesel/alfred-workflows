@@ -1,3 +1,4 @@
+#!/bin/bash
 sudo -k
 action=$(echo {query} | cut -d " " -f 1)
 pass=$(echo {query} | cut -d " " -f 2)

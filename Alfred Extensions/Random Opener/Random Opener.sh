@@ -1,3 +1,4 @@
+#!/bin/bash
 # The directory you want to use.
 DIR="/Users/your_user/Documents/"
 aux="$DIR"

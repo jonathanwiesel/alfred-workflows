@@ -1,3 +1,4 @@
+#!/bin/bash
 p={query}
 number=$(ps aux | grep -i "${p}" | grep -v grep | wc -l)
 
