@@ -134,7 +134,7 @@ on alfred_script(q)
 
 		tell application "Reminders"
 			tell list "Reminders"
-				make new reminder with properties {name:theReminder, due date:DueDate}
+				make new reminder with properties {name:theReminder, remind me date:DueDate}
 			end tell
 			quit
 		end tell
