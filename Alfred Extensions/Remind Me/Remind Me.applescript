@@ -123,6 +123,7 @@ on alfred_script(q)
 			tell list "Reminders"
 				make new reminder with properties {name:theReminder}
 			end tell
+			quit
 		end tell
 		growlSetup()
     	growlNotifyA(theReminder)
@@ -135,6 +136,7 @@ on alfred_script(q)
 			tell list "Reminders"
 				make new reminder with properties {name:theReminder, due date:DueDate}
 			end tell
+			quit
 		end tell
 	growlSetup()
     growlNotify(theReminder,DueDate)
