@@ -128,9 +128,36 @@ on alfred_script(q)
 		growlSetup()
     	growlNotifyA(theReminder)
     else
+
 		set stringedDate to theDate as string
 		set stringedHour to theHour as string
-		set DueDate to date (stringedDate & " " & stringedHour)
+
+		if stringedHour does not contain "am" and stringedHour does not contain "AM" and stringedHour does not contain "pm" and stringedHour does not contain "PM" then
+
+    		set mySplitedFullHour to explode(":", stringedHour)
+			set theSplitedHour to item 1 of mySplitedFullHour
+			set theSplitedMinutes to item 2 of mySplitedFullHour
+
+
+			if (theSplitedHour as number) > 23 then
+				set DueDate to date (stringedDate & " " & "12:00am")
+			else if (theSplitedHour as number) > 12 then
+				set correctHour to (theSplitedHour as number) - 12
+				set stringedCorrectHour to (correctHour as string) & ":" & (theSplitedMinutes as string) & "pm"
+				set DueDate to date (stringedDate & " " & stringedCorrectHour)
+			else if (theSplitedHour as number) = 12 then
+				set correctHour to (theSplitedHour as number)
+				set stringedCorrectHour to (correctHour as string) & ":" & (theSplitedMinutes as string) & "pm"
+				set DueDate to date (stringedDate & " " & stringedCorrectHour)
+			else
+				set correctHour to (theSplitedHour as number)
+				set stringedCorrectHour to (correctHour as string) & ":" & (theSplitedMinutes as string) & "am"
+				set DueDate to date (stringedDate & " " & stringedCorrectHour)
+			end if
+
+		else
+			set DueDate to date (stringedDate & " " & stringedHour)
+		end if
 
 		tell application "Reminders"
 			tell list "Reminders"

@@ -19,15 +19,20 @@ For date field you can use:
     today
     tomorrow
     next week
-    August 7 -- in that order (month day) and with no year!
+    8/24		-- no year
+    August 24 	-- in that order (month day) and with no year!
+    
     
 For hour field you must do it like this:
 
 	5:00am
-	10:30pm
 	2:22pm
+	1:00		-- will set to 1:00am
+	14:00		-- will set to 2:00pm
+	00:30		-- will set to 12:30am, don't use 24th hour, use 00
 	
-**NOTE:** If you dont type the am or pm or enter an invalid hour the reminder will be setted to 12:00am    
+	
+**NOTE:** If you enter an invalid hour the reminder will be setted to 12:00am    
     
         
 ---            
@@ -50,10 +55,10 @@ Some tips creating reminders:
 
 ###Case 3: Full reminder with date and hour
 
-    rm Remember to pick up the dog, next week, 4:00pm
+    rm Remember to pick up the dog, 9/12, 4:00pm
 *The reminder will be created with due date in 1 week at 4:00pm*
 
-    rm Dress like santa, December 24, 11:00pm
+    rm Dress like santa, December 24, 23:00
 *The reminder will be created with due date December 24 at 11:00pm*
 
 ###Case 4: Simple reminder with no due date
