@@ -56,7 +56,7 @@ Some tips creating reminders:
 ###Case 3: Full reminder with date and hour
 
     rm Remember to pick up the dog, 9/12, 4:00pm
-*The reminder will be created with due date in 1 week at 4:00pm*
+*The reminder will be created with due date September 12 at 4:00pm*
 
     rm Dress like santa, December 24, 23:00
 *The reminder will be created with due date December 24 at 11:00pm*
