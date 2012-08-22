@@ -8,6 +8,8 @@ To install just [download][download] and doble click the *.alfredextension* file
 
 To run just type "*stick theNoteYouWant"* in Alfred bar.
 
+***NOTE: Depending on your computer's performance you may need to uncomment and increase the duration of *delay* blocks*** 
+
 *You need to get a [Powerpack Alfred License][PP] to install extensions
 
 [PP]:http://www.alfredapp.com "Alfred"
