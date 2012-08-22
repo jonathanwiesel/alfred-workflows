@@ -5,6 +5,7 @@ Organizer
 Organize/Clean up Finder window elements by name. 
 
 This extension makes the action shown below:
+
 ![image1]
 
 To install just [download][download] and doble click the *.alfredextension* file.*
