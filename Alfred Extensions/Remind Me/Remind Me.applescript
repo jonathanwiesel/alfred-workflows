@@ -61,7 +61,7 @@ on alfred_script(q)
 	try
 		set queryDay to item 2 of myList
 	on error
-		set queryDay to "today"
+		set queryDay to "none"
 	end try
 	try
 		set theHour to item 3 of myList
