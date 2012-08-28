@@ -30,7 +30,7 @@ else if loc contains "b" then
 else if loc contains "/" then
 	tell application front_app
 		activate
-		set bounds of window 1 to {0, 0, ((myWidth * 3) / 5), ((myHeight * 3) / 5)}
+		set bounds of window 1 to {0, 0, ((myWidth * 3) / 4.5), ((myHeight * 3) / 5)}
 	end tell
 else
 	tell application front_app
