@@ -2,7 +2,7 @@ Organizer
 =================
 
 ***
-Organize/Clean up Finder window elements by name, kind or modification date. 
+Organize/Clean up Finder window elements by name, kind, date or size. 
 
 This extension makes the actions shown below (except for label):
 
