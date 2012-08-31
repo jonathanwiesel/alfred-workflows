@@ -8,8 +8,33 @@ if [[ $number -gt 0 ]]
 then
 	killall "${ruta}"
 	sleep 1 
-	open -a "${ruta}"
-	echo ""${p}" - Process Restarted";
+	number2=$(ps aux | grep -i "${p}" | grep -v grep | wc -l)
+	if [[ $number2 -gt 0 ]]
+	then
+		numberpid=$(ps -A | grep -i "${p}" | grep -v grep  | awk '{print $1}' | uniq)
+		kill "${numberpid}"
+		sleep 1
+		number3=$(ps aux | grep -i "${p}" | grep -v grep | wc -l)
+		if [[ $number3 -gt 0 ]]
+		then
+			kill -9 "${numberpid}"
+			sleep 1
+			number4=$(ps aux | grep -i "${p}" | grep -v grep | wc -l)
+			if [[ $number4 -gt 0 ]]
+			then
+				echo "Process '"${p}"' cannot be killed"
+			else
+				open -a "${ruta}"
+				echo ""${p}" - Process restarted"
+			fi
+		else
+			open -a "${ruta}" 
+			echo ""${p}" - Process restarted"
+		fi
+	else
+		open -a "${ruta}"
+		echo ""${p}" - Process restarted"
+	fi
 else
 	echo ""${p}" - Not Running"
 fi
