@@ -18,3 +18,4 @@ Also is sent to your clipboard.
 [PP]:http://www.alfredapp.com "Alfred"
 [download]:https://github.com/downloads/jonathanwiesel/Enforcer-Projects-/MD5.alfredextension "MD5"
 
+***Update:*** Now can pass an argument if you want a quick MD5 of some text. To use just type *"md5 theText"*

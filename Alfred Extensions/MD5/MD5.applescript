@@ -29,31 +29,36 @@ end growlSetup
 --selection code by StefanK
 --idea by albertogg
 on alfred_script(q)
-  	tell application "Finder"
-  		set validator to 0
-		set sel to selection
-		set fileAlias to the selection as alias
-		set fileName to name of fileAlias	
-		if sel is not {} then
-			set filepath to item 1 of sel as text
-			set p to POSIX path of filepath
-			set validateDirectory to ((characters end thru -1 of p) as string)
-			if validateDirectory contains "/" then
-				set validator to 1
-			else
-				set theMD5 to do shell script "md5 -q " & quoted form of p
+	if q = "" then
+	  	tell application "Finder"
+	  		set validator to 0
+			set sel to selection
+			set fileAlias to the selection as alias
+			set fileName to name of fileAlias	
+			if sel is not {} then
+				set filepath to item 1 of sel as text
+				set p to POSIX path of filepath
+				set validateDirectory to ((characters end thru -1 of p) as string)
+				if validateDirectory contains "/" then
+					set validator to 1
+				else
+					set theMD5 to do shell script "md5 -q " & quoted form of p
+				end if
 			end if
+		end tell
+		if validator = 0 then
+			set the clipboard to theMD5
+			set theMessage to theMD5
+		else
+			set theMessage to "Cannot hash a directory"
 		end if
-	end tell
-	if validator = 0 then
+		growlSetup()
+		growlNotify(fileName,theMessage)
+	else
+		set theMD5 to do shell script "md5 -s" & q & "| awk '{print $4}'"
 		set the clipboard to theMD5
 		set theMessage to theMD5
-	else
-		set theMessage to "Cannot hash a directory"
+		growlSetup()
+		growlNotify(q,theMessage)
 	end if
-	growlSetup()
-	growlNotify(fileName,theMessage)
 end alfred_script
-
-
-
