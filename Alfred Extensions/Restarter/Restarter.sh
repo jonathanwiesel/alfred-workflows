@@ -22,7 +22,17 @@ then
 			number4=$(ps aux | grep -i "${p}" | grep -v grep | wc -l)
 			if [[ $number4 -gt 0 ]]
 			then
-				echo "Process '"${p}"' cannot be killed"
+				ps -A | grep -i "xcode" | grep -v grep  | awk '{print $1}' | xargs kill -9
+				sleep 1
+				number5=$(ps aux | grep -i "${p}" | grep -v grep | wc -l)
+				if [[ $number5 -gt 0 ]]
+				then
+					open -a "${ruta}"
+					echo "Process '"${p}"' couldn't be killed fully"
+				else
+					open -a "${ruta}"
+					echo ""${p}" - Process restarted"
+				fi
 			else
 				open -a "${ruta}"
 				echo ""${p}" - Process restarted"
