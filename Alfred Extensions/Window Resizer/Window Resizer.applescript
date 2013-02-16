@@ -7,27 +7,47 @@ end tell
 
 set front_app to (path to frontmost application as Unicode text)
 
-if loc contains "t" then
+if loc contains "top" then
 	tell application front_app
 		activate
 		set bounds of window 1 to {0, 0, myWidth, (myHeight / 2)}
 	end tell
-else if loc contains ">" then
+else if loc contains "right" then
 	tell application front_app
 		activate
 		set bounds of window 1 to {(myWidth / 2), 0, myWidth, myHeight}
 	end tell
-else if loc contains "<" then
+else if loc contains "left" then
 	tell application front_app
 		activate
 		set bounds of window 1 to {0, 0, (myWidth / 2), myHeight}
 	end tell
-else if loc contains "b" then
+else if loc contains "bottom" then
 	tell application front_app
 		activate
 		set bounds of window 1 to {0, (myHeight / 2), myWidth, myHeight}
 	end tell
-else if loc contains "/" then
+else if loc contains "upperRight" then
+	tell application front_app
+		activate
+		set bounds of window 1 to {(myWidth / 2), 0, myWidth, (myHeight / 2)}
+	end tell
+else if loc contains "upperLeft" then
+	tell application front_app
+		activate
+		set bounds of window 1 to {0, 0, (myWidth / 2), (myHeight / 2)}
+	end tell
+else if loc contains "bottomRight" then
+	tell application front_app
+		activate
+		set bounds of window 1 to {(myWidth / 2), (myHeight / 2), myWidth, myHeight}
+	end tell
+else if loc contains "bottomLeft" then
+	tell application front_app
+		activate
+		set bounds of window 1 to {0, (myHeight / 2), (myWidth / 2), myHeight}
+	end tell
+else if loc contains "custom" then
 	tell application front_app
 		activate
 		set bounds of window 1 to {0, 0, ((myWidth * 3) / 4.5), ((myHeight * 3) / 5)}
