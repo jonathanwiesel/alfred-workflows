@@ -1,6 +1,6 @@
 #!/bin/bash
 # The directory you want to use.
-DIR="/Users/your_user/Documents/"
+DIR="/Volumes/LaCie/system/system/"
 
 # Storage random file
 shuffleFile="/tmp/randomOpener.dat" 
