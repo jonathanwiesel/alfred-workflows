@@ -19,6 +19,9 @@ Current hotkeys are Ctrl+D to organize by date modified and Ctrl+N to organize b
 
 *You need to get a [Powerpack Alfred License][PP] to install extensions
 
+
+***Update: Previously only icon view was supported, now list view is supported but for correct results you must set the "Arrange by" option to "None"***
+
 [PP]:http://www.alfredapp.com "Alfred"
 [download]:https://dl.dropbox.com/u/6859729/Alfred%20v2%20Extensions/Organizer.alfredworkflow "Organizer"
 
