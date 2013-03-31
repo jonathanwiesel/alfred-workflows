@@ -8,7 +8,7 @@ This extension makes the actions shown below (except for label):
 
 ![image1]
 
-To install just [download][download] and doble click the *.alfredextension* file.*
+To install just [download][download] and doble click the *.alfredworkflow* file.*
 
 To run you can type "*org argument"* in Alfred bar and your frontmost window will be organized.
 
