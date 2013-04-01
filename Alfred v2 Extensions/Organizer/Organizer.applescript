@@ -9,11 +9,11 @@ on alfred_script(q)
 					activate
 					clean up window 1 by kind
 					set message to "by kind"
-			else if q contains "date m" then
+			else if q contains "modification date" then
 					activate
 					clean up window 1 by modification date
 					set message to "by modification date"
-			else if q contains "date c" then
+			else if q contains "creation date" then
 					activate
 					clean up window 1 by creation date
 					set message to "by creation date"
@@ -34,10 +34,10 @@ on alfred_script(q)
 		        else if q contains "kind" then
 		        	set sort column to kind column
 		            set message to "by kind"
-				else if q contains "date m" then
+				else if q contains "modification date" then
 					set sort column to modification date column
 		            set message to "by modification date"
-				else if q contains "date c" then
+				else if q contains "creation date" then
 					set sort column to creation date column
 		            set message to "by creation date"
 				else if q contains "size" then
