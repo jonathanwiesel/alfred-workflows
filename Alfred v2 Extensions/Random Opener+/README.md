@@ -21,9 +21,11 @@ A random file within the given directory will be open and will not be randomly s
 
 Reset and count options also available.
 
+***Update: new "current" command to open random file in current Finder window.***
+
 ![image1]
 
-[image1]: http://cl.ly/image/3F1W0S2Z0w0t/Screen%20Shot%202013-03-31%20at%203.54.33%20PM.png  "menu"
+[image1]: http://cl.ly/image/2w3j041S1I2L/Screen%20Shot%202013-04-03%20at%2012.09.31%20AM.png  "menu"
 
 [download]: https://dl.dropbox.com/u/6859729/Alfred%20v2%20Extensions/Random%20Opener%2B.alfredworkflow
 	
