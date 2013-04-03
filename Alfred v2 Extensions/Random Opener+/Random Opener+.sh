@@ -1,9 +1,9 @@
 #!/bin/bash
 # The directory you want to use.
-DIR="$HOME/Documents/"
+DIR="$HOME/Documents"
 
 # Storage random file
-shuffleFile="$HOME/temp/randomOpener.dat" 
+shuffleFile="$HOME/randomOpener.dat" 
 
 
 if [ "{query}" == "reset" ]
@@ -16,15 +16,37 @@ then
   else
     echo "Specified directory not present"
   fi
-elif [ "{query}" == "count" ]
+
+elif [ "{query}" == "current" ]
 then
-  echo "$( wc -l "$shuffleFile" | awk '{print $1'} )"" files remaining in shuffle file"
+osascript << EOF
+tell application "Finder"
+  set theArray to {}
+  if window 1 exists then
+    set theItems to every file of window 1
+    repeat with i from 1 to count of theItems
+      set filepath to item i of theItems as text
+      set end of theArray to POSIX path of filepath
+    end repeat
+    if (count of theArray) is greater than 0 then
+      set theRandom to random number from 1 to count of theArray
+      set singleFile to item theRandom in theArray
+      do shell script "open " & quoted form of singleFile
+      return
+    else
+      set x to "Folder is empty or it contains only folders"
+    end if
+  else
+    set x to "No Finder window is open"
+  end if 
+end tell
+EOF
 else
   if [[ -d "${DIR}" ]]
   then 
       # check if the shuffle file exist or is empty
       if [ ! -f "${shuffleFile}" ] || [[ ! -s "${shuffleFile}" ]] ; then
-        echo "Generating shuffle file"
+        echo "New shuffle file generated"
         echo "$(find "${DIR}" -type f \( ! -iname ".*" \) )" > "${shuffleFile}"
       fi
 
