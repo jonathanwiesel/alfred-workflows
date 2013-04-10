@@ -9,7 +9,7 @@ on trim(someText)
 	
 	return someText
 end trim
-
+ 
 on splitText(delimiter, someText)
 	set prevTIDs to AppleScript's text item delimiters
 	set AppleScript's text item delimiters to delimiter
@@ -18,11 +18,15 @@ on splitText(delimiter, someText)
 	return output
 end splitText
 
+
+set sQ to "{query}"
+set iCounter to 0 as integer
+
 tell application "System Events"
 	set openAppsXML to ""
 	set allOpenApps to get name of (processes where background only is false)
 end tell
-
+ 
 repeat with i from 1 to the count of allOpenApps
 	set openApp to item i of allOpenApps
 	set appPathFull to do shell script "ps -A | grep -i '" & openApp & "' | grep -v grep | awk '{$1=$2=$3=\"\"; print $0}'"
@@ -31,11 +35,21 @@ repeat with i from 1 to the count of allOpenApps
 	set cleanAppPath to trim(appPath)
 	set iconPath to cleanAppPath & ".app"
 	
-	set openAppsXML to openAppsXML & "<item uid='" & openApp & "' arg='" & appPID & "|" & openApp & "' valid='YES' autocomplete='" & openApp & "'><title>Restart " & openApp & "</title> <icon type='fileicon'>" & iconPath & "</icon> </item>"
+	if sQ = "" then
+		set openAppsXML to openAppsXML & "<item uid='" & openApp & "' arg='" & appPID & "|" & openApp & "' valid='YES' autocomplete='" & openApp & "'><title>Restart " & openApp & "</title> <icon type='fileicon'>" & iconPath & "</icon> </item>"
+		set iCounter to iCounter + 1
+	else if openApp contains sQ then
+		set openAppsXML to openAppsXML & "<item uid='" & openApp & "' arg='" & appPID & "|" & openApp & "' valid='YES' autocomplete='" & openApp & "'><title>Restart " & openApp & "</title> <icon type='fileicon'>" & iconPath & "</icon> </item>"
+		set iCounter to iCounter + 1
+	end if
 end repeat
-
+ 
+if iCounter = 0 then
+	set openAppsXML to openAppsXML & "<item uid='' arg='' valid='NO'><title>No application found</title> <icon>icon.png</icon> </item>"
+end if
+ 
 set openAppsXML to "cat << EOB 
 <?xml version='1.0'?> <items> " & openAppsXML & "</items> 
 EOB"
-
+ 
 do shell script openAppsXML
