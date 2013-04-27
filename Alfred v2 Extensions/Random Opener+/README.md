@@ -27,7 +27,7 @@ Reset and count options also available.
 **Update: new "current" command to open random file in current Finder window.**
 
 **Update 2: better setup now!     
-To setup your directory just type *"randomsetup <full_path_to_your_directory>"*, or even better, type only *"randomsetup"* and your frontmost Finder window's open directory will be selected**
+To setup your directory just type *"randomsetup full_path_to_your_directory"*, or even better, type only *"randomsetup"* and your frontmost Finder window's open directory will be selected**
 
 ![image2]
 
