@@ -1,9 +1,12 @@
 #!/bin/bash
-# The directory you want to use.
-DIR="$HOME/Documents"
+. workflowHandler.sh
 
-# Storage random file
-shuffleFile="$HOME/randomOpener.dat" 
+DIR=$(getPref "randomDir" 1)
+if [ "${DIR}" ]
+then
+dataDir=$(getDataDir)
+shuffleFileName="randomOpener.dat"
+shuffleFile="$dataDir/$shuffleFileName"
 
 
 if [ "{query}" == "reset" ]
@@ -63,5 +66,8 @@ else
   else
     echo "Specified directory not present"
   fi
+fi
+else
+  echo "No directory configured. Please run randomsetup"
 fi
 exit 0
