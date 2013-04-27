@@ -56,11 +56,9 @@ else
       num_files="$( wc -l "$shuffleFile" | awk '{print $1'} )"
 
       randomNumber="$((RANDOM%num_files+1))"
-
-      aux="$(awk "NR==$randomNumber{print;exit}" $shuffleFile)"
-
+      aux="$(awk "NR==$randomNumber{print;exit}" "$shuffleFile")"
       # delete line from file
-      sed -i '' "$randomNumber d" $shuffleFile 
+      sed -i '' "$randomNumber d" "$shuffleFile" 
 
       open "${aux}"
   else
