@@ -6,8 +6,9 @@ if [ "${DIR}" ]
 then
 dataDir=$(getDataDir)
 shuffleFileName="randomOpener.dat"
+lastFileName="lastFile.dat"
 shuffleFile="$dataDir/$shuffleFileName"
-
+lastFile="$dataDir/$lastFileName"
 
 if [ "{query}" == "reset" ]
 then
@@ -41,12 +42,21 @@ tell application "Finder"
     end if
   else
     set x to "No Finder window is open"
-  end if 
+  end if
 end tell
 EOF
+elif [ "{query}" == "deletelast" ]
+then
+  if [ ! -f "${lastFile}" ] || [[ ! -s "${lastFile}" ]] ; then
+    echo "No record for last file"
+  else
+    aux="$(awk "NR==1{print;exit}" "$lastFile")"
+    rm "${aux}"
+    sed -i '' "1 d" "$lastFile"
+    echo "File ${aux} deleted"
 else
   if [[ -d "${DIR}" ]]
-  then 
+  then
       # check if the shuffle file exist or is empty
       if [ ! -f "${shuffleFile}" ] || [[ ! -s "${shuffleFile}" ]] ; then
         echo "New shuffle file generated"
@@ -58,7 +68,10 @@ else
       randomNumber="$((RANDOM%num_files+1))"
       aux="$(awk "NR==$randomNumber{print;exit}" "$shuffleFile")"
       # delete line from file
-      sed -i '' "$randomNumber d" "$shuffleFile" 
+      sed -i '' "$randomNumber d" "$shuffleFile"
+
+      # add last opened to lastfile
+      echo "${aux}" > "${lastFile}"
 
       open "${aux}"
   else
