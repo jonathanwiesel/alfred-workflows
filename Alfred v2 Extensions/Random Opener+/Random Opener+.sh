@@ -4,25 +4,25 @@
 DIR=$(getPref "randomDir" 1)
 if [ "${DIR}" ]
 then
-dataDir=$(getDataDir)
-shuffleFileName="randomOpener.dat"
-lastFileName="lastFile.dat"
-shuffleFile="$dataDir/$shuffleFileName"
-lastFile="$dataDir/$lastFileName"
+  dataDir=$(getDataDir)
+  shuffleFileName="randomOpener.dat"
+  lastFileName="lastFile.dat"
+  shuffleFile="$dataDir/$shuffleFileName"
+  lastFile="$dataDir/$lastFileName"
 
-if [ "{query}" == "reset" ]
-then
-  if [[ -d "${DIR}" ]]
+  if [ "{query}" == "reset" ]
   then
-    rm "${shuffleFile}"
-    echo "$(find "${DIR}" -type f \( ! -iname ".*" \) )" > "${shuffleFile}"
-    echo "Shuffle file reset"
-  else
-    echo "Specified directory not present"
-  fi
+    if [[ -d "${DIR}" ]]
+    then
+      rm "${shuffleFile}"
+      echo "$(find "${DIR}" -type f \( ! -iname ".*" \) )" > "${shuffleFile}"
+      echo "Shuffle file reset"
+    else
+      echo "Specified directory not present"
+    fi
 
-elif [ "{query}" == "current" ]
-then
+  elif [ "{query}" == "current" ]
+  then
 osascript << EOF
 tell application "Finder"
   set theArray to {}
@@ -45,39 +45,40 @@ tell application "Finder"
   end if
 end tell
 EOF
-elif [ "{query}" == "deletelast" ]
-then
-  if [ ! -f "${lastFile}" ] || [[ ! -s "${lastFile}" ]] ; then
-    echo "No record for last file"
-  else
-    aux="$(awk "NR==1{print;exit}" "$lastFile")"
-    rm "${aux}"
-    sed -i '' "1 d" "$lastFile"
-    echo "File ${aux} deleted"
-else
-  if [[ -d "${DIR}" ]]
+  elif [ "{query}" == "deletelast" ]
   then
-      # check if the shuffle file exist or is empty
-      if [ ! -f "${shuffleFile}" ] || [[ ! -s "${shuffleFile}" ]] ; then
-        echo "New shuffle file generated"
-        echo "$(find "${DIR}" -type f \( ! -iname ".*" \) )" > "${shuffleFile}"
-      fi
-
-      num_files="$( wc -l "$shuffleFile" | awk '{print $1'} )"
-
-      randomNumber="$((RANDOM%num_files+1))"
-      aux="$(awk "NR==$randomNumber{print;exit}" "$shuffleFile")"
-      # delete line from file
-      sed -i '' "$randomNumber d" "$shuffleFile"
-
-      # add last opened to lastfile
-      echo "${aux}" > "${lastFile}"
-
-      open "${aux}"
+    if [ ! -f "${lastFile}" ] || [[ ! -s "${lastFile}" ]] ; then
+      echo "No record for last file"
+    else
+      aux="$(awk "NR==1{print;exit}" "$lastFile")"
+      rm "${aux}"
+      sed -i '' "1 d" "$lastFile"
+      echo "File ${aux} deleted"
+    fi
   else
-    echo "Specified directory not present"
+    if [[ -d "${DIR}" ]]
+    then
+        # check if the shuffle file exist or is empty
+        if [ ! -f "${shuffleFile}" ] || [[ ! -s "${shuffleFile}" ]] ; then
+          echo "New shuffle file generated"
+          echo "$(find "${DIR}" -type f \( ! -iname ".*" \) )" > "${shuffleFile}"
+        fi
+
+        num_files="$( wc -l "$shuffleFile" | awk '{print $1'} )"
+
+        randomNumber="$((RANDOM%num_files+1))"
+        aux="$(awk "NR==$randomNumber{print;exit}" "$shuffleFile")"
+        # delete line from file
+        sed -i '' "$randomNumber d" "$shuffleFile"
+
+        # add last opened to lastfile
+        echo "${aux}" > "${lastFile}"
+
+        open "${aux}"
+    else
+      echo "Specified directory not present"
+    fi
   fi
-fi
 else
   echo "No directory configured. Please run randomsetup"
 fi
